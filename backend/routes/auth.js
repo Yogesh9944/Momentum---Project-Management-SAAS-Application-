@@ -7,7 +7,6 @@ const { protect } = require('../middleware/auth');
 
 const generateToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRE || '7d' });
 
-// @POST /api/auth/register
 router.post('/register', [
   body('name').trim().notEmpty().withMessage('Name is required'),
   body('email').isEmail().withMessage('Valid email required'),
@@ -31,7 +30,7 @@ router.post('/register', [
   }
 });
 
-// @POST /api/auth/login
+
 router.post('/login', [
   body('email').isEmail(),
   body('password').notEmpty()
@@ -51,12 +50,11 @@ router.post('/login', [
   }
 });
 
-// @GET /api/auth/me
+
 router.get('/me', protect, async (req, res) => {
   res.json(req.user);
 });
 
-// @PUT /api/auth/profile
 router.put('/profile', protect, async (req, res) => {
   try {
     const { name, bio, avatar } = req.body;
