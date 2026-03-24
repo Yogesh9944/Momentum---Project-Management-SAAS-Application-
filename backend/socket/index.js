@@ -9,7 +9,7 @@ const initSocket = (server) => {
   });
 
   io.on('connection', (socket) => {
-    console.log(`⚡ Socket connected: ${socket.id}`);
+    console.log(` Socket connected: ${socket.id}`);
 
     // Join user-specific room
     socket.on('join:user', (userId) => {
@@ -36,7 +36,7 @@ const initSocket = (server) => {
     });
 
     socket.on('disconnect', () => {
-      console.log(`⚡ Socket disconnected: ${socket.id}`);
+      console.log(`Socket disconnected: ${socket.id}`);
     });
   });
 
